@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$USER_HOME$/chat-gpt-prompt-engineering-dev/.idea/chat-gpt-prompt-engineering-dev.iml" filepath="$USER_HOME$/chat-gpt-prompt-engineering-dev/.idea/chat-gpt-prompt-engineering-dev.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/chatbot_python_chatgpt.iml" filepath="$PROJECT_DIR$/.idea/chatbot_python_chatgpt.iml" />
     </modules>
   </component>
