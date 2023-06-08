@@ -9,6 +9,9 @@ load_dotenv()
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 openai.api_key = OPENAI_API_KEY
 
+preguntas_anteriores = []
+respuestas_anteriores = []
+
 
 def get_completion(prompt, model="text-davinci-002"):
     response = openai.Completion.create(
@@ -24,9 +27,19 @@ def get_completion(prompt, model="text-davinci-002"):
 print("Bienvenido a nuestro ChatBot Basico. Escribe *Salir* cuando quieres terminar")
 
 while True:
+    conversacion_historica = ""
     input_user = input("\nTu:")
     if input_user.lower() == "salir":
         break
-    prompt = f"El usuario pregunta: {input_user} \n ChatGPT Responde:"
-    response = get_completion(prompt)
-    print(f"ChatBot: {response}")
+
+    for pregunta, respuesta in zip(preguntas_anteriores, respuestas_anteriores):
+        conversacion_historica += f"El usuario pregunta: {pregunta}\n"
+        conversacion_historica += f"ChatGPT Responde: {respuesta}\n"
+
+    prompt = f"El usuario pregunta: {input_user} \n"
+    conversacion_historica += prompt
+    response = get_completion(conversacion_historica)
+    print(f"{response}")
+
+    preguntas_anteriores.append(input_user)
+    respuestas_anteriores.append(response)
